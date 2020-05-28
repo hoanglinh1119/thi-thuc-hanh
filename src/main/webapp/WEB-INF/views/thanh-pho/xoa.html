@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>tao moi thanh pho</title>
+</head>
+<body>
+<h1> Sua thanh pho</h1>
+<form th:action="@{/xoathanhpho}" th:object="${thanhpho}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td> Ten thanh pho:</td>
+            <td><input type="text" th:field="*{tenThanhPho}"/></td>
+        </tr>
+        <tr>
+            <td>Quoc gia:</td>
+            <td>
+                <select th:field="*{quocGia}">
+                    <option th:each="p : ${quocGias}" th:value="${p.id}" th:text="${p.ten}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Dien tich:</td>
+            <td><input type="text" th:field="*{dienTich}"/></td>
+
+        </tr>
+        <tr>
+            <td>Dan so:</td>
+            <td><input type="text" th:field="*{danSo}"/></td>
+
+        </tr>
+        <tr>
+            <td>GDP :</td>
+            <td><input type="text" th:field="*{gDP}"/></td>
+
+        </tr>
+        <tr>
+            <td>Mo ta chung :</td>
+            <td><textarea th:field="*{mota}"></textarea></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Xoa"></td>
+            <td><a href="/danhsachthanhpho">Thoat</a></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/taomoithanhpho">Tao moi thanh pho</a>
+<h1>Thanh pho</h1>
+<table border="1">
+    <tr>
+        <th>#</th>
+        <th>Thanh pho</th>
+        <th> Quoc Gia</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="thanhpho : ${city}">
+        <tr>
+
+            <td th:text="${thanhpho.getId()}"></td>
+            <td th:text="${thanhpho.getTenThanhPho()}"></td>
+            <td th:text="${thanhpho.quocGia.getTen()}"></td>
+            <td><a th:href="@{/suathanhpho/__${thanhpho.id}__ }">Edit</a></td>
+            <td><a th:href="@{/xoathanhpho/__${thanhpho.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+<a th:href="@{'/danhsachthanhpho'(page=${city.number - 1})}" th:if="${city.hasPrevious()}">Previous</a>
+    <span th:text="${city.number + 1}"></span>/<span th:text="${city.totalPages}" th:value="${city.number + 1}"></span>
+<a th:href="@{'/danhsachthanhpho'(page=${city.number + 1})}" th:if="${city.hasNext()}">Next</a>
+</div>
+
+</body>
+</html>
